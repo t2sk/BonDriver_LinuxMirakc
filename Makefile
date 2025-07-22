@@ -1,8 +1,13 @@
-CXX := g++
+CXX ?= g++
+
+# Use clang++ when USE_CLANG=1 is specified
+ifeq ($(USE_CLANG),1)
+    CXX := clang++
+endif
 DEFINES :=
 INCLUDES := -Iinclude
 CPPFLAGS := -MMD
-CXXFLAGS := -std=c++17 $(INCLUDES) -O2 -Wall -pthread -fPIC $(DEFINES)
+CXXFLAGS := -std=c++23 $(INCLUDES) -O3 -Wall -pthread -fPIC $(DEFINES)
 LDFLAGS := -shared -pthread
 LDLIBS := -lm -ldl
 
