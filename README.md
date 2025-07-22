@@ -29,9 +29,24 @@ clone で行う方はする方は
 > $ git clone "URL" ***--recurse-submodules***
 
 とすることで picojson 含めてcloneされます。
-
-ビルドはmakeコマンドにて実施してください。コンパイラは g++ です。
-> $ make
+ビルドは CMake でも実施できます。C++23 と最適化 (-O3) を利用します。
+```sh
+$ cmake -S . -B build
+$ cmake --build build
+```
+clang++ を使う場合は次のようにコンパイラを指定してください。
+```sh
+$ cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++
+$ cmake --build build
+```
+従来の Makefile も C++23 と -O3 でビルドされます。次の通りです。
+```sh
+$ make
+```
+clang++ を利用する場合は環境変数を指定してください。
+```sh
+$ make USE_CLANG=1
+```
 
 ## License
 This software is released under the MIT License, see LICENSE.
